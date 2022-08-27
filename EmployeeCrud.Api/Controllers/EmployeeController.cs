@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using EmployeeCrud.Api.Models;
+using EmployeeCrud.Api.Models.DTO;
 
 namespace EmployeeCrud.Api.Controllers
 {
@@ -22,6 +23,22 @@ namespace EmployeeCrud.Api.Controllers
         public IActionResult Get()
         {
             return Ok(_db.Employees.ToList());
+        }
+
+        [HttpPost]
+        public IActionResult Post(EmployeeDto employee)
+        {
+            try
+            {
+                Employee emp = new Employee { FirstName = employee.FirstName, LastName = employee.LastName, DateOfBirth = employee.DateOfBirth };
+                _db.Employees.Add(emp);
+                _db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }
