@@ -25,6 +25,12 @@ namespace EmployeeCrud.Api.Controllers
             return Ok(_db.Employees.ToList());
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            return Ok(_db.Employees.FirstOrDefault(x=>x.Id == id));
+        }
+
         [HttpPost]
         public IActionResult Post(EmployeeDto employee)
         {
@@ -33,6 +39,47 @@ namespace EmployeeCrud.Api.Controllers
                 Employee emp = new Employee { FirstName = employee.FirstName, LastName = employee.LastName, DateOfBirth = employee.DateOfBirth };
                 _db.Employees.Add(emp);
                 _db.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Put(int id, EmployeeDto employee)
+        {
+            try
+            {
+                Employee emp = _db.Employees.FirstOrDefault(x => x.Id == id);
+                if (emp != null)
+                {
+                    emp.FirstName = employee.FirstName;
+                    emp.LastName = employee.LastName;
+                    emp.DateOfBirth = employee.DateOfBirth;
+                    _db.Employees.Update(emp);
+                    _db.SaveChanges();
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                Employee emp = _db.Employees.FirstOrDefault(x => x.Id == id);
+                if (emp != null)
+                {
+                    _db.Employees.Remove(emp);
+                    _db.SaveChanges();
+                }
                 return Ok();
             }
             catch (Exception ex)
