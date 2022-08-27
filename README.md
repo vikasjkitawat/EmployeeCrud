@@ -44,4 +44,11 @@ app.UseSwaggerUI(c => {
 
 Update startup to be changed to swagger endpoint
 
+
+### Migrations
+```csharp
+Add-Migration InitialMigration
+Update-Database
+```
+
 ## UI
