@@ -20,7 +20,8 @@ namespace EmployeeCrud.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Employee");
+            //return View();
         }
 
         public IActionResult Privacy()

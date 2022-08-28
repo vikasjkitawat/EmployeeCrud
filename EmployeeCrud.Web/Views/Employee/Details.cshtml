@@ -1,0 +1,28 @@
+﻿@model Employee
+
+@{
+    ViewBag.Title = $"Edit {Model.FirstName}";
+}
+
+<h1>Showing Details for @Model.FirstName</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date Of Birth</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.FirstName</td>
+            <td>@Model.LastName</td>
+            <td>@Model.DateOfBirth</td>
+        </tr>
+        
+    </tbody>
+</table>

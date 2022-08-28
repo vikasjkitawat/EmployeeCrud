@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Employee>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date Of Birth</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var emp in Model){
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.FirstName</td>
+                <td>@emp.LastName</td>
+                <td>@emp.DateOfBirth</td>
+                <td>@Html.ActionLink("Edit", "Edit","Employee",new {id=emp.Id})</td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
